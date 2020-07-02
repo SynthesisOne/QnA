@@ -16,6 +16,7 @@ I would like to be able to select a question
     sign_in(user)
     questions
     visit questions_path
+
     questions.each do |question|
       expect(page).to have_content question.title
     end

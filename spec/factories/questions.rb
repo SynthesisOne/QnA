@@ -9,6 +9,7 @@ FactoryBot.define do
     user
     title # Same as `title { generate(:title) }`
     body { 'MyBody' }
+
     trait :invalid do
       title { nil }
     end
