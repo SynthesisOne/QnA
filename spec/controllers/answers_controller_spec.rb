@@ -10,10 +10,13 @@ RSpec.describe AnswersController, type: :controller do
   let(:answer_3)      { create(:answer) }
 
   describe 'POST #create' do
+
     context 'User is authorized' do
+
       before { login(user) }
 
       context 'with valid attributes' do
+
         it 'Verification of the author of the answer' do
           post :create, params: { answer: attributes_for(:answer), question_id: question }
           expect(assigns(:answer).user_id).to eq(user.id)
@@ -30,6 +33,7 @@ RSpec.describe AnswersController, type: :controller do
       end
 
       context 'with invalid attributes' do
+
         it 'does not save the answer' do
           expect { post :create, params: { answer: attributes_for(:answer, :invalid), question_id: question } }.to_not change(Answer, :count)
         end
@@ -41,6 +45,7 @@ RSpec.describe AnswersController, type: :controller do
       end
     end
     context 'User not authorized' do
+
       it 'Redirect to sign_in_page' do
         post :create, params: { answer: attributes_for(:answer), question_id: question }
         expect(response).to redirect_to new_user_session_path
@@ -49,9 +54,11 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'PATCH #update' do
+
     before { login(user) }
 
     context 'with valid attributes' do
+
       it 'assigns the requested answer to @answer' do
         patch :update, params: { id: answer, answer: attributes_for(:answer) }
         expect(assigns(:answer)).to eq answer
@@ -70,7 +77,9 @@ RSpec.describe AnswersController, type: :controller do
     end
 
     context 'with invalid attributes' do
+
       let(:answer_static) { create(:answer, body: 'Answer_body_text') }
+
       before { patch :update, params: { id: answer_static, answer: attributes_for(:answer, :invalid) } }
 
       it 'does not change answer' do
@@ -85,6 +94,7 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'GET #edit' do
+
     before { login(user) }
 
     it 'renders edit view' do
@@ -94,9 +104,11 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+
     before { login(user) }
 
     context 'Correct User try delete ' do
+
       let!(:answer) { create(:answer, user: user, question: question) }
 
       it 'deletes the answer' do

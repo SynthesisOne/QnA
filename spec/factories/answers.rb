@@ -8,8 +8,10 @@ FactoryBot.define do
   factory :answer do
     user
     question
+
     sequence(:body) { |n| "Answer_number#{n}" }
     # body # Same as `body { generate(:body) }`  if you need sequence not only for one factory
+    #
     trait :invalid do
       body { nil }
     end
