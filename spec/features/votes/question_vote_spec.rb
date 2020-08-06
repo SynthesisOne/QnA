@@ -39,9 +39,9 @@ I would like to be able to vote on a question
 
       scenario 'try vote against question' do
         within '#question' do
-        within '#vote-block' do
-          click_on '-'
-        end
+          within '#vote-block' do
+            click_on '-'
+          end
         end
         expect(page).to have_content 'You have successfully voted'
       end

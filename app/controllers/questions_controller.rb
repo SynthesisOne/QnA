@@ -2,7 +2,7 @@
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show] # except is the opposite: only
-
+  before_action :gon_variables, only: :show
   include Voted
 
   def index
@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
 
   def show
     answer.links.new # build создаем связанный объект
-    gon.question_id = question.id
+
   end
 
   def new
@@ -48,7 +48,10 @@ class QuestionsController < ApplicationController
   end
 
   private
-
+  def gon_variables
+    gon.question_id = question.id
+    gon.question_owner_id = question.user.id
+  end
   def answer
     @answer ||= question.answers.new
   end

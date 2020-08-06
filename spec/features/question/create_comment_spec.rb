@@ -15,18 +15,18 @@ feature 'User can add comment to question.', %q(
 
     scenario 'add comment for question' do
       within '#question' do
-        click_on 'add comment'
+        click_on I18n.t('add comment')
         fill_in 'Body', with: 'This is test comment for question'
-        click_on 'save comment'
+        click_on I18n.t('save comment')
       end
       expect(page).to have_content 'This is test comment for question'
     end
 
     scenario 'can not add comment with invalid attributes' do
       within '#question' do
-        click_on 'add comment'
+        click_on I18n.t('add comment')
         fill_in 'Body', with: ''
-        click_on 'save comment'
+        click_on I18n.t('save comment')
       end
       expect(page).to have_content "Body can't be blank"
       expect(page).to have_content 'Body is too short (minimum is 10 characters)'
@@ -44,9 +44,9 @@ feature 'User can add comment to question.', %q(
 
         Capybara.using_session('user') do
           within '#question' do
-            click_on 'add comment'
+            click_on I18n.t('add comment')
             fill_in 'Body', with: 'This is test comment for question'
-            click_on 'save comment'
+            click_on I18n.t('save comment')
 
             expect(page).to have_content 'This is test comment for question'
           end

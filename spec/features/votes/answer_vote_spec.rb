@@ -39,9 +39,9 @@ I would like to be able to vote on a answer
 
       scenario 'try vote against answer' do
         within "#answer-id-#{answer.id}" do
-        within '#vote-block' do
-          click_on '-'
-        end
+          within '#vote-block' do
+            click_on '-'
+          end
         end
         expect(page).to have_content 'You have successfully voted'
       end
