@@ -9,12 +9,13 @@ RSpec.describe AnswersChannel, type: :channel do
 
   it 'subscribes' do
     subscribe
-
+    perform :follow, id: question.id
     expect(subscription).to be_confirmed
   end
 
   it 'subscribes to a stream when question is provided' do
-    subscribe(question_id: question.id)
+    subscribe
+    perform(:follow, id: question.id)
 
     expect(subscription).to be_confirmed
 
@@ -23,5 +24,18 @@ RSpec.describe AnswersChannel, type: :channel do
 
     # or directly by model if you create streams with `stream_for`
     expect(subscription).to have_stream_for("answers_for_question_#{question.id}")
+  end
+
+  it 'unsubscribe' do
+    subscribe
+    perform(:follow, id: question.id)
+
+    expect(subscription).to be_confirmed
+
+    expect(subscription).to have_stream_from("answers_for_question_#{question.id}")
+
+    perform :unfollow
+
+    expect(subscription).not_to have_streams
   end
 end

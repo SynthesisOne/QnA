@@ -16,12 +16,12 @@ feature 'User can add comment to answer.', %q(
     scenario 'add comment for answer' do
       within '.answers' do
         within "#answer-id-#{answer.id}" do
-          click_on 'add comment'
+          click_on I18n.t('add comment')
           within '.comment-block' do
             fill_in 'Body', with: 'Test text for answer comment'
           end
 
-          click_on 'save comment'
+          click_on I18n.t('save comment')
           within '.answer_comments' do
             expect(page).to have_content 'Test text for answer comment'
           end
@@ -32,12 +32,12 @@ feature 'User can add comment to answer.', %q(
     scenario 'can not add comment with invalid attributes' do
       within '.answers' do
         within "#answer-id-#{answer.id}" do
-          click_on 'add comment'
+          click_on I18n.t('add comment')
           within '.comment-block' do
             fill_in 'Body', with: ''
           end
 
-          click_on 'save comment'
+          click_on I18n.t('save comment')
           within '.answer-errors' do
             expect(page).to have_content 'Body is too short (minimum is 10 characters)'
             expect(page).to have_content "Body can't be blank"
@@ -59,10 +59,10 @@ feature 'User can add comment to answer.', %q(
       Capybara.using_session('user') do
         within '.answers' do
           within "#answer-id-#{answer.id}" do
-            click_on 'add comment'
+            click_on I18n.t('add comment')
             within '.comment-block' do
               fill_in 'Body', with: 'Test text for answer comment'
-              click_on 'save comment'
+              click_on I18n.t('save comment')
             end
             expect(page).to have_content 'Test text for answer comment'
           end
@@ -81,7 +81,7 @@ feature 'User can add comment to answer.', %q(
       visit question_path(question)
 
       within '.answers' do
-        expect(page).to_not have_content 'add comment'
+        expect(page).to_not have_content I18n.t('add comment')
       end
     end
   end
