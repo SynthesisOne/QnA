@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show] # except is the opposite: only
+  before_action :authenticate_user!, except: %i[index show]
   before_action :gon_variables, only: :show
   before_action :question, except: %i[index create]
 
@@ -14,12 +14,12 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    answer.links.new # build создаем связанный объект
+    answer.links.new
   end
 
   def new
     question
-    question.links.new # build создаем связанный объект
+    question.links.new
     question.build_reward
   end
 
@@ -68,9 +68,6 @@ class QuestionsController < ApplicationController
   end
 
   helper_method :answers
-  # def load_question
-  #   @question = Question.find(params[:id])
-  # end
 
   def question_params
     params.require(:question).permit(:title, :body,

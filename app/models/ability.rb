@@ -16,7 +16,7 @@ class Ability
 
   def guest_abilities
     can :read, :all
-    cannot :read, Reward # что бы посмотреть награды юзер должен войти
+    cannot :read, Reward
   end
 
   def admin_abilities

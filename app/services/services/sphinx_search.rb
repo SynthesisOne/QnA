@@ -15,7 +15,7 @@ module Services
     def call
       options = {
         page: params[:page].nil? ? 1 : params[:page],
-        per_page: params[:per_page].nil? ? PER_PAGE : params[:per_page] # для показа n-го количества сущностей на странице. если в запросе будет params[:per_page]
+        per_page: params[:per_page].nil? ? PER_PAGE : params[:per_page]
       }
       @request = @body.split(/'([^']+)'|"([^"]+)"|\s+|\+/).reject(&:empty?).map(&:inspect)
 

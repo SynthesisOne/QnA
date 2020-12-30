@@ -10,9 +10,6 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
   def telegram
     oauth_providers(session['omniauth.auth'])
   end
-  # def github
-  #   render json: request.env['omniauth.auth']
-  # end
 
   def custom_email
     session['omniauth.auth']['info']['mail_from_user'] = params[:email]
