@@ -5,6 +5,11 @@ Main development took place from June 23, 2020 to September 20, 2020
 
 ##### The goal of the project is to create an alternative to the open source Stack Overflow project
 
+- project implemented via BDD
+- background tasks are in use(Active job)
+- used by WebSockets (Action Cable)
+
+
 ##### gems (libraries) were used in the development of the QnA project:
 - omniauth
 - cancancan
@@ -23,6 +28,7 @@ Main development took place from June 23, 2020 to September 20, 2020
 - the ability to subscribe to a question to receive notifications of answers
 - log in through social networks
 - api
+  
   
 Status of Last Deployment:<br>
 
